@@ -16,12 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\sample.core\sample.Core.csproj" />
-    <ProjectReference Include="..\..\sample.Data\sample.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\Impl\" />
+    <ProjectReference Include="..\sample.Core\sample.Core.csproj" />
+    <ProjectReference Include="..\sample.DataStorage\sample.DataStorage.csproj" />
+    <ProjectReference Include="..\sample.Data\sample.Data.csproj" />
   </ItemGroup>
 
 </Project>

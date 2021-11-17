@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using sample.Core.DataStorage;
+using sample.Data.Options;
+using sample.DataStorage;
 using sample.Extensions;
-using sample.Options;
-using sample.Services;
-using sample.Services.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,8 @@ namespace sample
             services.AddOptions();
             services.Configure<BaseConfig>(Configuration.GetSection("Base"));
             services.UseAutomapper();
-            services.AddSingleton<IDataStorage, DataStorage>();
+            // services.AddSingleton<IUserInfoStorageService, UserInfoStorageListService>();
+            services.AddScoped<IUserInfoStorageService, UserInfoStorageSqlService>();
             services.AddControllersWithViews();
         }
 

@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using sample.Core.DataStorage;
 using sample.Data.Entities;
 using sample.Data.Models;
+using sample.Data.Options;
 using sample.Models;
-using sample.Options;
-using sample.Services;
-using sample.Services.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,11 +20,11 @@ namespace sample.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ILogger _loggerCustom;
         private readonly BaseConfig _baseConfig;
-        private readonly IDataStorage _dataStorage;
+        private readonly IUserInfoStorageService _dataStorage;
         private readonly IMapper _mapper;
         public HomeController(ILogger<HomeController> logger,
             IOptions<BaseConfig> baseConfig,
-            IDataStorage dataStorage,
+            IUserInfoStorageService dataStorage,
             ILoggerFactory loggerFactory,
             IMapper mapper)
         {
@@ -42,11 +41,11 @@ namespace sample.Controllers
             _logger.LogInformation(_baseConfig.AppName);
             _logger.LogWarning(_baseConfig.AppName);
 
-            _dataStorage.AddUser(new()
+            _dataStorage.Add(new()
             {
                 Id = "1",
                 FirstName = "Giovanni",
-                Lastname = "Rossi",
+                LastName = "Rossi",
                 Addresses = new()
                 {
                     new()
@@ -58,7 +57,7 @@ namespace sample.Controllers
                 },
                 Username = "gio.ross"
             });
-            UserModel m = _mapper.Map<UserModel>(_dataStorage.GetUser("1"));
+            UserModel m = _mapper.Map<UserModel>(_dataStorage.GetById("1"));
 
             return View();
         }
