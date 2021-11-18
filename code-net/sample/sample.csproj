@@ -21,4 +21,8 @@
     <ProjectReference Include="..\sample.Data\sample.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Options\" />
+  </ItemGroup>
+
 </Project>
